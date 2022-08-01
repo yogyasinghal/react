@@ -1,0 +1,14 @@
+3 phases in life cycle
+
+1.Mounting
+
+constructor
+ds method(getderived..)
+render
+componentdidmount
+
+2.Updating
+
+
+
+3.Unmounting
