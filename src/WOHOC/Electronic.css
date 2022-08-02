@@ -1,13 +1,13 @@
-body{
+/* body{
     background-color: black;
-}
-h1{
+} */
+#e1{
     text-shadow: 3px 3px 2px rgb(92, 187, 239) ;
 }
-.try{
+#eltry {
     /* background-color: yellowgreen; */
 }
-.try:hover {
+#eltry:hover {
     /* background-color: aqua; */
     /* box-shadow: 20px; */
     cursor: pointer;

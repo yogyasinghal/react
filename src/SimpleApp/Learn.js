@@ -1,3 +1,5 @@
+import React, { Component }  from 'react';
+
 function Learn(){
     let name = "react";
     console.log("logging");

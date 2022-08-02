@@ -1,4 +1,6 @@
 import './App.css';
+import React, { Component }  from 'react';
+
 import Learn from './SimpleApp/Learn';
 import index from './SimpleApp/Index';
 import ContentPage from './SimpleApp/ContentPage';
@@ -36,6 +38,8 @@ import ClothingData from './WOHOC/cdata';
 
 import FilterProd from './WHOC/FilterProd';
 
+import Pro from './Pro';
+
 function App() {
   const data=[
     {
@@ -70,7 +74,8 @@ function App() {
   console.log(".....");
   return (
     <div className="App">
-    
+      {/* <Pro/> */}
+      {/* <FilterProd data={ClothingData}></FilterProd> */}
 
       {/* <Clothing data={ClothingData}></Clothing> */}
       <Electronic data = {ProdData}></Electronic>

@@ -40,7 +40,7 @@ class Electronic extends React.Component{
         return(
             <div>
                 {/* <NavBar/> */}
-                 <h1 className="text-primary d-flex justify-content-center m-4" >Search</h1>
+                 <h1 id="e1" className="text-primary d-flex justify-content-center m-4" >Search</h1>
                  <form className="d-flex justify-content-center g-2 align-items-center">
                     {/* <input 
                         type='text' 
@@ -65,7 +65,7 @@ class Electronic extends React.Component{
                     this.state.result.map((item)=>(
                         // this.state.productDetail.map((item)=>(
                             <div class="col"  >
-                        <div className="card bg-light  p-1 try">
+                        <div className="card bg-light  p-1" id="eltry">
                             <img className="card-img-top " style={{height:"40vh"}} src={item.img} alt="Card image cap"></img>
                             <div className="card-body">
                             <h5 className="card-title">{item.pName}</h5>

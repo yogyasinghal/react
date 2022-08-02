@@ -1,5 +1,6 @@
 // import './Product.css';
 import Cart from './Cart';
+import React, { Component }  from 'react';
 
 
 const clicked=(d)=>{
@@ -17,18 +18,21 @@ const Product=(props)=>{
         console.log(item.name);
         // console.log(i);
         return(
-
+          
             // <div className="card-group" >
-  <div className="card m-1 col-md-3">
-    <img className="card-img-top h-50" src={item.img} alt="Card image cap"></img>
-    <div className="card-body" style={{height:"15vh"}}>
-      <h5 className="card-title">{item.name}</h5>
-      <h6 className='card-title'>${item.price}</h6>
-      <p className="card-text">{item.desc}</p>
-      <button className = "btn btn-primary">add to cart</button>
-      {/* <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p> */}
+      <>
+      <div className="card m-1 col-md-3">
+      <img className="card-img-top h-50" src={item.img} alt="Card image cap"></img>
+      <div className="card-body" style={{height:"15vh"}}>
+        <h5 className="card-title">{item.name}</h5>
+        <h6 className='card-title'>${item.price}</h6>
+        <p className="card-text">{item.desc}</p>
+        <button className = "btn btn-primary">add to cart</button>
+      </div>
     </div>
-  {/* </div> */}
+    </>
+      )
+  // {/* </div> */}
   {/* <div className="card">
     <img className="card-img-top" src={item.img} alt="Card image cap"></img>
     <div className="card-body">
@@ -45,9 +49,9 @@ const Product=(props)=>{
       <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
     </div>
   </div> */}
-</div>
 
-        )
+
+        
     })
     return(k)
     // return (

@@ -1,3 +1,5 @@
+import React, { Component }  from 'react';
+
 function Greet(props) {
     console.log(props);
     const {name,age} = props
