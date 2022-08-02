@@ -30,7 +30,7 @@ import SignInComponent from './PassingFunctions/SignInComponent';
 import LifeCycle from './LifeCycleMethods/LifeCycle';
 import Parent from './DataFlow/Parent';
 
-import Electronic from './WOHOC/Electronic';
+// import Electronic from './WOHOC/Electronic';
 import ProdData from './WOHOC/edata';
 
 import Clothing from './WOHOC/Clothing';
@@ -40,6 +40,8 @@ import FilterProd from './WHOC/FilterProd';
 
 import Pro from './Pro';
 
+import ContactManagerComp from './ContactManager/ContactManagerComp';
+import contactDetails from './ContactManager/contactDetails';
 function App() {
   const data=[
     {
@@ -74,11 +76,12 @@ function App() {
   console.log(".....");
   return (
     <div className="App">
+      <ContactManagerComp data={contactDetails}></ContactManagerComp>
       {/* <Pro/> */}
       {/* <FilterProd data={ClothingData}></FilterProd> */}
 
       {/* <Clothing data={ClothingData}></Clothing> */}
-      <Electronic data = {ProdData}></Electronic>
+    
 
       {/* <LifeCycle name="tony"></LifeCycle> */}
       {/* <Parent/> */}
