@@ -46,17 +46,30 @@ class ContactManagerComp extends React.Component{
     }
     toggleUpdate=()=>{
         // just for text
+        console.log("toggleupdate");
         this.setState({update:!this.state.update})
     }
     setUpdateMsg=(e,itemid)=>{
         e.preventDefault()
-        this.toggleUpdate()   
+        this.toggleUpdate()  
+        
+       
         this.setState({uid:itemid})
+        let temp=[...this.state.contactinfo] 
+        let obj=temp.find((item)=>item.id===itemid)
+        console.log("itemid",itemid,obj);
+        this.setState({ipUser:obj.fname})
+        this.setState({ipPhone:obj.phone})
+        this.setState({ipEmail:obj.email})
+        this.setState({ipAddress:obj.address})
+        
+        // console.log(this.state.uid);
     }
     handleUpdate=(e)=>{
         e.preventDefault()
         let temp=[...this.state.contactinfo]
         let obj=temp.find((item)=>item.id===this.state.uid)
+        // console.log(obj);
         obj.fname=this.state.ipUser
         this.setState({contactinfo:temp})
         this.setState({uid:-1})
@@ -65,7 +78,7 @@ class ContactManagerComp extends React.Component{
     render(){
         return(
             <div>
-           
+                {/* {this.state.ipUser} */}
                 {
                 this.state.update?
                 // <div>
@@ -77,22 +90,27 @@ class ContactManagerComp extends React.Component{
                 <div className="col-sm-6 col-md-3  form-group p-2">
                     <input type="email" className="form-control" id="exampleInputEmail1" 
                     aria-describedby="emailHelp" placeholder="Enter Name"
-                    onChange={(e)=>this.handleChange(e,'uname')} ></input>
+                    onChange={(e)=>this.handleChange(e,'uname')} 
+                    value={this.state.ipUser}
+                    ></input>
                 </div>
                 <div className="col-sm-6 col-md-3 form-group p-2">
                     <input type="email" className="form-control" id="exampleInputEmail1" 
                     aria-describedby="emailHelp" placeholder="Enter Phone"
-                    onChange={(e)=>this.handleChange(e,'phone')}></input>
+                    onChange={(e)=>this.handleChange(e,'phone')}
+                    value={this.state.ipPhone}></input>
                 </div>
                 <div className="col-sm-6 col-md-3 form-group p-2">
                     <input type="email" className="form-control" id="exampleInputEmail1" 
                     aria-describedby="emailHelp" placeholder="Enter Email"
-                    onChange={(e)=>this.handleChange(e,'email')}></input>
+                    onChange={(e)=>this.handleChange(e,'email')}
+                    value={this.state.ipEmail}></input>
                 </div>
                 <div className="col-sm-6 col-md-3 form-group p-2">
                     <input type="email" className="form-control" id="exampleInputEmail1" 
                     aria-describedby="emailHelp" placeholder="Enter Address"
-                    onChange={(e)=>this.handleChange(e,'addr')}></input>
+                    onChange={(e)=>this.handleChange(e,'addr')}
+                    value={this.state.ipAddress}></input>
                 </div>
                 
                 
