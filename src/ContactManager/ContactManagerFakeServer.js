@@ -1,19 +1,37 @@
 
 import React from "react";
-import './contactManagerComp.css';
+import axios from "axios";
+import './ContactManagerFakeServer.css';
 class ContactManagerFakeServer extends React.Component{
     constructor(props){
         super(props)
         this.state={
-            contactinfo:this.props.data,
+            contactinfo:[],
             ipUser:"",
             ipPhone:"",
+            ipCity:"",
             ipEmail:"",
-            ipAddress:"",
             update:false,
             uid:-1
         }
     }
+
+    componentDidMount=()=>{
+        console.log("comp did mount");
+        axios.get('http://localhost:3001/empDetails')
+        .then((res)=>{
+            console.log(res);
+            console.log(res.data);
+            // console.log(res.data.hits);
+            console.log(this.state.contactinfo);
+            this.setState({contactinfo:res.data});
+            console.log(this.state.contactinfo);
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+
    handleChange=(e,key)=>{
     if(key==='uname')
     this.setState({ipUser:e.target.value})
@@ -21,39 +39,72 @@ class ContactManagerFakeServer extends React.Component{
     this.setState({ipPhone:e.target.value})
     if(key==='email')
     this.setState({ipEmail:e.target.value})
-    if(key==='addr')
-    this.setState({ipAddress:e.target.value})    
+    if(key==='city')
+    this.setState({ipCity:e.target.value})
+      
    }
     
-    handleContact=(e)=>{
+    handleAddContact=(e)=>{
         e.preventDefault()
         const obj={
             id:Date.now(),
             fname:this.state.ipUser,
             phone:this.state.ipPhone,
             email:this.state.ipEmail,
-            address:this.state.ipAddress
+            city:this.state.ipCity,
         }
+        axios.post('http://localhost:3001/empDetails',{
+            fname:this.state.ipUser,
+            phone:this.state.ipPhone,
+            email:this.state.ipEmail,
+            city:this.state.ipCity
+        })
+        .then((res)=>{
+            console.log(res);
+            // this.callApi(e);
+            // console.log(res.data.hits);
+            // this.setState({result:res.data})
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
         let newData=[...this.state.contactinfo,obj]
         this.setState({contactinfo:newData})   
+        this.setState({ipUser:""})
+        this.setState({ipPhone:""})
+        this.setState({ipEmail:""})
+        this.setState({ipCity:""})
     }
     handleDelete=(e,itemid)=>{
         // we are basically iterating
         // and we append every id except the given id
 
       const result=this.state.contactinfo.filter((item)=>item.id!==itemid)
-      this.setState({contactinfo:result})
+      this.setState({contactinfo:result});
+      
+      e.preventDefault();
+        axios.delete(`http://localhost:3001/empDetails/${itemid}`)
+        .then((res)=>{
+            console.log(res);
+            this.callApi(e);
+            // console.log(res.data.hits);
+            // this.setState({result:res.data})
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
     }
-    toggleUpdate=()=>{
-        // just for text
-        console.log("toggleupdate");
-        this.setState({update:!this.state.update})
-    }
+    // toggleUpdate=()=>{
+    //     // just for text
+    //     console.log("toggleupdate");
+    //     this.setState({update:!this.state.update})
+    // }
     setUpdateMsg=(e,itemid)=>{
         e.preventDefault()
-        this.toggleUpdate()  
+        // this.toggleUpdate()  
         
-       
+        // this.setState({update:!this.state.update})
+        this.setState({update:true})
         this.setState({uid:itemid})
         let temp=[...this.state.contactinfo] 
         let obj=temp.find((item)=>item.id===itemid)
@@ -61,7 +112,8 @@ class ContactManagerFakeServer extends React.Component{
         this.setState({ipUser:obj.fname})
         this.setState({ipPhone:obj.phone})
         this.setState({ipEmail:obj.email})
-        this.setState({ipAddress:obj.address})
+        this.setState({ipCity:obj.city})
+        // this.setState({ipAddress:obj.address})
         
         // console.log(this.state.uid);
     }
@@ -71,21 +123,39 @@ class ContactManagerFakeServer extends React.Component{
         let obj=temp.find((item)=>item.id===this.state.uid)
         // console.log(obj);
         obj.fname=this.state.ipUser
+        obj.city=this.state.ipCity
+        obj.email=this.state.ipEmail
+        obj.phone=this.state.ipPhone
         this.setState({contactinfo:temp})
-        this.setState({uid:-1})
-        this.toggleUpdate()
+        // this.setState({uid:-1})
+        // this.toggleUpdate()
+
+        axios.put(`http://localhost:3001/empDetails/${obj.id}`,{
+            fname:this.state.ipUser,
+            phone:this.state.ipPhone,
+            email:this.state.ipEmail,
+            city:this.state.ipCity
+        })
+        .then((res)=>{
+            console.log(res);
+            // this.setState({update:true})
+            
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+        this.setState({update:false});
+        this.setState({ipUser:""})
+        this.setState({ipPhone:""})
+        this.setState({ipEmail:""})
+        this.setState({ipCity:""})
+
+
     }
     render(){
         return(
             <div>
-                {/* {this.state.ipUser} */}
-                {
-                this.state.update?
-                // <div>
-                <h1 id="cmh1" className="text-primary d-flex justify-content-center m-4">Update</h1>
-                :<h1></h1>
-                }
-                {/* <h1 id="e1" className="text-primary d-flex justify-content-center m-4" >Search</h1> */}
+               
                 <form className="row mx-4 d-flex justify-content-center align-items-center">
                 <div className="col-sm-6 col-md-3  form-group p-2">
                     <input type="email" className="form-control" id="exampleInputEmail1" 
@@ -108,36 +178,37 @@ class ContactManagerFakeServer extends React.Component{
                 </div>
                 <div className="col-sm-6 col-md-3 form-group p-2">
                     <input type="email" className="form-control" id="exampleInputEmail1" 
-                    aria-describedby="emailHelp" placeholder="Enter Address"
-                    onChange={(e)=>this.handleChange(e,'addr')}
+                    aria-describedby="emailHelp" placeholder="Enter city"
+                    onChange={(e)=>this.handleChange(e,'city')}
                     value={this.state.ipAddress}></input>
                 </div>
                 
                 
                 </form>
+
+
                 <div className="d-flex justify-content-center m-4">
                 {
                     this.state.update?<button  className="btn btn-primary m-2" onClick={(e)=>this.handleUpdate(e)}>update contact</button>
                     :
-                    <button className="btn btn-primary m-2" onClick={(e)=>this.handleContact(e)}>add contact</button>
+                    <button className="btn btn-primary m-2" onClick={(e)=>this.handleAddContact(e)}>add contact</button>
                 }
                 </div>
-                {/* </div> */}
+       
               
             
             <h2 className="text-success d-flex justify-content-center m-4">All Contacts</h2>
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-5 p-4 mx-3 justify-content-evenly ">
             {
             this.state.contactinfo.map((item)=>(
-            // this.state.productDetail.map((item)=>(
             <div class="col">
             <div className="card bg-light  p-1" id="cm1">
-                {/* <img className="card-img-top " style={{height:"40vh"}} src={item.img} alt="Card image cap"></img> */}
+               
                 <div className="card-body">
                   <h5 className="card-title">{item.fname}</h5>
                   <h6 className="card-title">{item.phone}</h6>
                   <p className="card-text">{item.email}</p>
-                  <p className="card-text">{item.address}</p>
+                  <p className="card-text">{item.city}</p>
                     <button 
                     className="btn btn-primary m-2" 
                     onClick={(e)=>this.handleDelete(e,item.id)}>
@@ -145,11 +216,12 @@ class ContactManagerFakeServer extends React.Component{
                     </button>
                     <button className="btn btn-primary m-2" 
                             onClick={(e)=>this.setUpdateMsg(e,item.id)}>update</button>
-                  {/* <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p> */}
+                
                 </div>
             </div>
             </div>
             ))}
+
             </div>
 
 

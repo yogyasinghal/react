@@ -49,6 +49,9 @@ import SimpleApiCall from './APICalls/SimpleApiCall';
 
 import LCMapiCall from './APICalls/LCMapiCall';
 import BlogSearch from './APICalls/BlogSearch';
+
+import ContactManagerFakeServer from './ContactManager/ContactManagerFakeServer';
+
 function App() {
   const data=[
     {
@@ -83,8 +86,9 @@ function App() {
   console.log(".....");
   return (
     <div className="App">
+      <ContactManagerFakeServer></ContactManagerFakeServer>
       {/* basic crud operations on fake server */}
-      <BlogSearch></BlogSearch>
+      {/* <BlogSearch></BlogSearch> */}
 
       {/* <LCMapiCall></LCMapiCall> */}
       {/* <SimpleApiCall></SimpleApiCall> */}
