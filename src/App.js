@@ -42,6 +42,13 @@ import Pro from './Pro';
 
 import ContactManagerComp from './ContactManager/ContactManagerComp';
 import contactDetails from './ContactManager/contactDetails';
+
+import LoginComp from './ReactEventDemo/LoginComp';
+
+import SimpleApiCall from './APICalls/SimpleApiCall';
+
+import LCMapiCall from './APICalls/LCMapiCall';
+import BlogSearch from './APICalls/BlogSearch';
 function App() {
   const data=[
     {
@@ -76,8 +83,16 @@ function App() {
   console.log(".....");
   return (
     <div className="App">
+      {/* basic crud operations on fake server */}
+      <BlogSearch></BlogSearch>
+
+      {/* <LCMapiCall></LCMapiCall> */}
+      {/* <SimpleApiCall></SimpleApiCall> */}
+
+      {/* <LoginComp/> */}
+
       {/* <Electronic data={ProdData}></Electronic> */}
-      <ContactManagerComp data={contactDetails}></ContactManagerComp>
+      {/* <ContactManagerComp data={contactDetails}></ContactManagerComp> */}
       {/* <Task1></Task1> */}
       {/* <Task2/> */}
 

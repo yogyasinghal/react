@@ -1,0 +1,8 @@
+in logincomp we use onblur 
+onblur is alternative to onchange
+onchange render ui every time
+like if we enter tony
+t to ton tony
+
+but onblur will change when user enter full name 
+and then we can setstate
