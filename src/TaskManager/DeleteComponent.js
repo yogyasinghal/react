@@ -1,10 +1,30 @@
 import React from "react";
+
+// import _isEqual from 'lodash/isEqual';
+import isEqual from "lodash/isEqual";
+
 class DeleteComponent extends React.Component{
     constructor(props){
         super(props)
         this.state={
             hello:"hello state",
-            ans:this.props.PendingTask
+            // ans:this.props.PendingTask
+        }
+    }
+    // installed lodash and used isequal
+    // without this even if we are passing data
+    // between other 2 comp 
+    // this is still calling so now we are comparing this
+    
+    shouldComponentUpdate(nextProps,nextState){
+        // if (nextProps.getDeleteComponent===this.props.getDeleteComponent){
+        //     return false;
+        // }
+        if(isEqual(nextProps.deleteTask,this.props.deleteTask)){
+            return false;
+        }
+        else{
+            return true;
         }
     }
     // DoneTask=(e,itemId)=>{
@@ -21,6 +41,7 @@ class DeleteComponent extends React.Component{
     //     // this.state.ans = [...arr];
     // }
     render(){
+        console.log("delete");
         // console.log(this.state.tasks);
         return(
             <div className="bg-danger text-light m-2 p-2">

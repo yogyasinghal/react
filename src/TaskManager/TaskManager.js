@@ -76,7 +76,8 @@ class TaskManager extends React.Component{
                 deleteTask={this.deleteTask} 
                 changeCompletionStatus={this.changeCompletionStatus}
                 CompletedTask ={this.getCompletedItems()}></CompletedComponent>
-                <DeleteComponent 
+                <DeleteComponent
+                deleteTask={this.deleteTask} 
                 restoreTask={this.restoreTask} 
                 getDeleteComponent={this.getDeleteComponent()}></DeleteComponent>
                 {/* <button onClick={(e)=>try(e)}>click me</button> */}
