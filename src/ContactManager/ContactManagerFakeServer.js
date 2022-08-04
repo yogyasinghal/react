@@ -1,4 +1,5 @@
-
+// do run fakeserver in another folder before running this
+// by npm start
 import React from "react";
 import axios from "axios";
 import './ContactManagerFakeServer.css';
@@ -18,7 +19,8 @@ class ContactManagerFakeServer extends React.Component{
 
     componentDidMount=()=>{
         console.log("comp did mount");
-        axios.get('http://localhost:3001/empDetails')
+        // axios.get('http://localhost:3001/empDetails')
+        axios.get('https://contact-fake-server.herokuapp.com/empDetails')
         .then((res)=>{
             console.log(res);
             console.log(res.data);
@@ -53,7 +55,8 @@ class ContactManagerFakeServer extends React.Component{
             email:this.state.ipEmail,
             city:this.state.ipCity,
         }
-        axios.post('http://localhost:3001/empDetails',{
+        // axios.post('http://localhost:3001/empDetails',{
+        axios.post('https://contact-fake-server.herokuapp.com/empDetails',{
             fname:this.state.ipUser,
             phone:this.state.ipPhone,
             email:this.state.ipEmail,
@@ -83,7 +86,8 @@ class ContactManagerFakeServer extends React.Component{
       this.setState({contactinfo:result});
       
       e.preventDefault();
-        axios.delete(`http://localhost:3001/empDetails/${itemid}`)
+        // axios.delete(`http://localhost:3001/empDetails/${itemid}`)
+        axios.delete(`https://contact-fake-server.herokuapp.com/empDetails/${itemid}`)
         .then((res)=>{
             console.log(res);
             this.callApi(e);
@@ -130,7 +134,8 @@ class ContactManagerFakeServer extends React.Component{
         // this.setState({uid:-1})
         // this.toggleUpdate()
 
-        axios.put(`http://localhost:3001/empDetails/${obj.id}`,{
+        // axios.put(`http://localhost:3001/empDetails/${obj.id}`,{
+            axios.put(`https://contact-fake-server.herokuapp.com/empDetails/${obj.id}`,{
             fname:this.state.ipUser,
             phone:this.state.ipPhone,
             email:this.state.ipEmail,

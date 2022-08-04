@@ -56,12 +56,8 @@ import ContactManagerFakeServer from './ContactManager/ContactManagerFakeServer'
 import ImageSearch from './APICalls/ImageSearch';
 import PageNotFound from './Components/PageNotFound';
 
-import TaskManager from './TaskManager/TaskManager';
 
-import Home from './Home';
-import TaskManagerData from './TaskManager/TaskManagerData';
-
-function App() {
+function Home() {
   const data=[
     {
       id:1,
@@ -93,21 +89,22 @@ function App() {
     },
   ]
   console.log(".....");
+
+  
   return (
-    <div className="App">
-      {/* <nav>
+    <div className="Home">
+      <nav>
         <div className = "justify-content-evenly m-4 p-2" style = {{display:"flex"}}>
       <Link className='btn btn-dark text-danger' to='/image'>Image Search</Link>
       <Link className='btn btn-dark text-info' to='/contactManager'>Contact Manager</Link>
+      <Link className='btn btn-dark text-danger' to='/taskManager'>Task Manager</Link>
         </div>
-      </nav> */}
-      <Routes>
-        <Route path="/" element={<Home></Home>}></Route>
-        <Route path ="/taskManager" element={<TaskManager data ={TaskManagerData}></TaskManager>}></Route>
+      </nav>
+      {/* <Routes>
         <Route path='/image' element={<ImageSearch></ImageSearch>}></Route>
         <Route path='/contactManager' element={<ContactManagerFakeServer></ContactManagerFakeServer>}></Route>
         <Route path='*' element={<PageNotFound/>}></Route>
-      </Routes>
+      </Routes> */}
       {/* <ImageSearch></ImageSearch> */}
       {/* <ContactManagerFakeServer></ContactManagerFakeServer> */}
       {/* basic crud operations on fake server */}
@@ -161,4 +158,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
