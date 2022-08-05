@@ -61,6 +61,9 @@ import TaskManager from './TaskManager/TaskManager';
 import Home from './Home';
 import TaskManagerData from './TaskManager/TaskManagerData';
 
+import LeaderBoard from './ScoreDashBoard/LeaderBoard';
+import SortName from './ScoreDashBoard/SortName';
+
 function App() {
   const data=[
     {
@@ -106,6 +109,12 @@ function App() {
         <Route path ="/taskManager" element={<TaskManager data ={TaskManagerData}></TaskManager>}></Route>
         <Route path='/image' element={<ImageSearch></ImageSearch>}></Route>
         <Route path='/contactManager' element={<ContactManagerFakeServer></ContactManagerFakeServer>}></Route>
+        
+        <Route path='/leaderboard' element={<LeaderBoard></LeaderBoard>}></Route>
+        <Route path='/leaderboard/name'element={<SortName></SortName>}></Route>
+        <Route path='/leaderboard/age'></Route>
+        
+        <Route path='/rank'></Route>
         <Route path='*' element={<PageNotFound/>}></Route>
       </Routes>
       {/* <ImageSearch></ImageSearch> */}

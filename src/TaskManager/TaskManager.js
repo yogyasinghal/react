@@ -2,6 +2,7 @@ import React from "react";
 import CompletedComponent from "./CompletedComponent";
 import PendingComponent from "./PendingComponent";
 import DeleteComponent from "./DeleteComponent";
+
 class TaskManager extends React.Component{
     constructor(props){
         super(props)
@@ -66,8 +67,8 @@ class TaskManager extends React.Component{
     render(){
         console.log(this.state.tasks);
         return(
-            <div className="justify-content-center d-flex-wrap">
-                <h1>Task Manager</h1>
+            <div>
+                <h1  className="text-white bg-dark justify-content-center d-flex">Task Manager</h1>
                 <PendingComponent
                 deleteTask={this.deleteTask} 
                 changeCompletionStatus={this.changeCompletionStatus} 

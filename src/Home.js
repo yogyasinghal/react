@@ -99,6 +99,11 @@ function Home() {
       <Link className='btn btn-dark text-info' to='/contactManager'>Contact Manager</Link>
       <Link className='btn btn-dark text-danger' to='/taskManager'>Task Manager</Link>
         </div>
+        <div className = "justify-content-evenly m-4 p-2" style = {{display:"flex"}}>
+      <Link className='btn btn-dark text-danger' to='/leaderboard'>LeaderBoard</Link>
+      {/* <Link className='btn btn-dark text-info' to='/leaderboard/name'>Name</Link>
+      <Link className='btn btn-dark text-danger' to='/leaderboard/age'>Age</Link> */}
+        </div>
       </nav>
       {/* <Routes>
         <Route path='/image' element={<ImageSearch></ImageSearch>}></Route>

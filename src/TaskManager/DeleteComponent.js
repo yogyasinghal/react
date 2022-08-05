@@ -15,18 +15,18 @@ class DeleteComponent extends React.Component{
     // without this even if we are passing data
     // between other 2 comp 
     // this is still calling so now we are comparing this
-    
-    shouldComponentUpdate(nextProps,nextState){
-        // if (nextProps.getDeleteComponent===this.props.getDeleteComponent){
-        //     return false;
-        // }
-        if(isEqual(nextProps.deleteTask,this.props.deleteTask)){
-            return false;
-        }
-        else{
-            return true;
-        }
-    }
+
+    // shouldComponentUpdate(nextProps,nextState){
+    //     // if (nextProps.getDeleteComponent===this.props.getDeleteComponent){
+    //     //     return false;
+    //     // }
+    //     if(isEqual(nextProps.deleteTask,this.props.deleteTask)){
+    //         return false;
+    //     }
+    //     else{
+    //         return true;
+    //     }
+    // }
     // DoneTask=(e,itemId)=>{
     //     e.preventDefault()
     //     let arr = [...this.state.ans];
@@ -44,15 +44,14 @@ class DeleteComponent extends React.Component{
         console.log("delete");
         // console.log(this.state.tasks);
         return(
-            <div className="bg-danger text-light m-2 p-2">
-                <h1>Delete Component</h1>
+            <div style={{minHeight:"20vh"}} className=" border border-dark rounded my-1 bg-danger text-light m-2 p-2">
+                <h1 style={{margin:"revert"}} className="justify-content-center d-flex text-light" >Delete Component</h1>
                 {
                     //  this.state.ans.map((item)=>(
                     this.props.getDeleteComponent.map((item)=>(
-                        <div>
-                            <h2>{item.taskname}</h2>
-                            <h3>{item.desc}</h3>
-                            <button onClick={()=>this.props.restoreTask(item.id)} className="btn btn-primary">Restore</button>
+                        <div className="my-1 border border-light justify-content-center d-flex p-2">
+                            <h2 className="mx-4 p-1">{item.taskname} {item.desc}</h2>
+                            <button onClick={()=>this.props.restoreTask(item.id)} className="btn btn-primary m-2">Restore</button>
                             {/* <button onClick={(e)=>this.DoneTask(e,item.id)} className="btn btn-primary">Done</button> */}
                         </div>
                     ))

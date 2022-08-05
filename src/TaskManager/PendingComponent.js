@@ -23,16 +23,18 @@ class PendingComponent extends React.Component{
     render(){
         // console.log(this.state.tasks);
         return(
-            <div className="bg-info m-2 p-2">
-                <h1>PendingComponent</h1>
+            <div className="rounded w-50 bg-info m-auto p-2">
+                <h1  className="justify-content-center d-flex text-warning">Pending Component</h1>
                 {
                     //  this.state.ans.map((item)=>(
                     this.props.PendingTask.map((item)=>(
-                        <div>
-                            <h2>{item.taskname}</h2>
-                            <h3>{item.desc}</h3>
-                            <button onClick={()=>this.props.changeCompletionStatus(item.id)} className="btn btn-primary">Done</button>
-                            <button onClick={()=>this.props.deleteTask(item.id)} className="btn btn-primary">Trash</button>
+                        <div  className="my-1 border border-primary justify-content-center d-flex p-2">
+                            <h2 className="mx-4 p-1">{item.taskname} {item.desc}</h2>
+                            {/* <h3></h3> */}
+                            <button onClick={()=>this.props.changeCompletionStatus(item.id)} 
+                            className="btn btn-primary m-1 ">Done</button>
+                            <button onClick={()=>this.props.deleteTask(item.id)} 
+                            className="btn btn-primary m-1 ">Trash</button>
                             {/* <button onClick={(e)=>this.DoneTask(e,item.id)} className="btn btn-primary">Done</button> */}
                         </div>
                     ))

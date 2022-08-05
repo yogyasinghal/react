@@ -20,7 +20,9 @@ class ContactManagerFakeServer extends React.Component{
     componentDidMount=()=>{
         console.log("comp did mount");
         // axios.get('http://localhost:3001/empDetails')
-        axios.get('https://contact-fake-server.herokuapp.com/empDetails')
+        // axios.get('https://contact-fake-server.herokuapp.com/empDetails')
+        // axios.get('https://contact-node-server.herokuapp.com/')
+        axios.get('http://localhost:9000/')
         .then((res)=>{
             console.log(res);
             console.log(res.data);
@@ -55,13 +57,19 @@ class ContactManagerFakeServer extends React.Component{
             email:this.state.ipEmail,
             city:this.state.ipCity,
         }
+        // const user = {
+        //     'email':this.state.ipEmail,
+        //     'name':this.state.ipUser
+        // }
         // axios.post('http://localhost:3001/empDetails',{
-        axios.post('https://contact-fake-server.herokuapp.com/empDetails',{
-            fname:this.state.ipUser,
-            phone:this.state.ipPhone,
-            email:this.state.ipEmail,
-            city:this.state.ipCity
-        })
+        // axios.post('https://contact-fake-server.herokuapp.com/empDetails',{
+        //     axios.post('http://localhost:9000',{
+        //     fname:this.state.ipUser,
+        //     phone:this.state.ipPhone,
+        //     email:this.state.ipEmail,
+        //     city:this.state.ipCity
+        // })
+        axios.post('http://localhost:9000',{obj})
         .then((res)=>{
             console.log(res);
             // this.callApi(e);
@@ -86,8 +94,8 @@ class ContactManagerFakeServer extends React.Component{
       this.setState({contactinfo:result});
       
       e.preventDefault();
-        // axios.delete(`http://localhost:3001/empDetails/${itemid}`)
-        axios.delete(`https://contact-fake-server.herokuapp.com/empDetails/${itemid}`)
+        axios.delete(`http://localhost:3001/empDetails/${itemid}`)
+        // axios.delete(`https://contact-fake-server.herokuapp.com/empDetails/${itemid}`)
         .then((res)=>{
             console.log(res);
             this.callApi(e);
@@ -134,8 +142,8 @@ class ContactManagerFakeServer extends React.Component{
         // this.setState({uid:-1})
         // this.toggleUpdate()
 
-        // axios.put(`http://localhost:3001/empDetails/${obj.id}`,{
-            axios.put(`https://contact-fake-server.herokuapp.com/empDetails/${obj.id}`,{
+        axios.put(`http://localhost:3001/empDetails/${obj.id}`,{
+            // axios.put(`https://contact-fake-server.herokuapp.com/empDetails/${obj.id}`,{
             fname:this.state.ipUser,
             phone:this.state.ipPhone,
             email:this.state.ipEmail,
