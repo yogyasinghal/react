@@ -1,6 +1,6 @@
 import './App.css';
 import React, { Component }  from 'react';
-import {Link,Route,Routes} from 'react-router-dom'
+import {Link,NavLink,Route,Routes} from 'react-router-dom'
 
 import Learn from './SimpleApp/Learn';
 import index from './SimpleApp/Index';
@@ -64,6 +64,14 @@ import TaskManagerData from './TaskManager/TaskManagerData';
 import LeaderBoard from './ScoreDashBoard/LeaderBoard';
 import SortName from './ScoreDashBoard/SortName';
 
+import Login from './NestedRoutes/Login';
+import UserPage from './NestedRoutes/UserPage';
+import Dashboard from './NestedRoutes/DashBoard';
+
+import DashBoardFunctional from "./ParamsandLocation/DashBoardFunctional";
+import LoginFunctional from "./ParamsandLocation/LoginFunctional";
+
+
 function App() {
   const data=[
     {
@@ -95,9 +103,25 @@ function App() {
       img:"https://picsum.photos/200"
     },
   ]
-  console.log(".....");
+  // console.log(".....");
+  // let isActive = true;
   return (
     <div className="App">
+      <NavLink to='/image' style={({isActive})=>(
+        {color:isActive?'red':'blue'}
+      )}> Navlink
+
+      </NavLink>
+
+      <NavLink to='/contactManager'>
+      {
+        ({isActive})=>(
+          <button className={isActive?'btn-primary':'btn-danger'}>login</button>
+        )
+      }
+      </NavLink>
+
+
       {/* <nav>
         <div className = "justify-content-evenly m-4 p-2" style = {{display:"flex"}}>
       <Link className='btn btn-dark text-danger' to='/image'>Image Search</Link>
@@ -111,10 +135,22 @@ function App() {
         <Route path='/contactManager' element={<ContactManagerFakeServer></ContactManagerFakeServer>}></Route>
         
         <Route path='/leaderboard' element={<LeaderBoard></LeaderBoard>}></Route>
-        <Route path='/leaderboard/name'element={<SortName></SortName>}></Route>
-        <Route path='/leaderboard/age'></Route>
-        
-        <Route path='/rank'></Route>
+        {/* <Route path='/leaderboard/name'element={<SortName></SortName>}></Route> */}
+        {/* <Route path='/leaderboard/age'></Route> */}
+      
+        {/* <Route path='/rank'></Route> */}
+      
+         <Route path='/login' element={<LoginFunctional></LoginFunctional>}></Route>
+         <Route path='/dashboard/:username' element={<DashBoardFunctional></DashBoardFunctional>}></Route>
+      
+
+        {/* nested component below */}
+        <Route path='/user' element={<UserPage></UserPage>}>
+          <Route path='login' element={<Login></Login>}>
+          </Route>
+          <Route path='dashboard' element={<Dashboard></Dashboard>}></Route>
+        </Route>
+
         <Route path='*' element={<PageNotFound/>}></Route>
       </Routes>
       {/* <ImageSearch></ImageSearch> */}

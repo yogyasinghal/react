@@ -19,10 +19,10 @@ class ContactManagerFakeServer extends React.Component{
 
     componentDidMount=()=>{
         console.log("comp did mount");
-        // axios.get('http://localhost:3001/empDetails')
+        axios.get('http://localhost:3001/empDetails')
         // axios.get('https://contact-fake-server.herokuapp.com/empDetails')
         // axios.get('https://contact-node-server.herokuapp.com/')
-        axios.get('http://localhost:9000/')
+        // axios.get('http://localhost:9000/')
         .then((res)=>{
             console.log(res);
             console.log(res.data);
